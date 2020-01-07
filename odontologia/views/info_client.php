@@ -48,11 +48,12 @@
 
 <div class="card" style="width: 25rem;">
 <ul class="list-group list-group-flush  "  >
-    <li class="list-group-item list-group-item-primary">Cedula</li>
+    <li class="list-group-item list-group-item-primary">Cédula</li>
     <li class="list-group-item"><?php echo $cedula?></li>
-    <li class="list-group-item list-group-item-primary">Telefono</li>
+    <li class="list-group-item list-group-item-primary">Teléfono</li>
     <li class="list-group-item"><?php echo $telefono?></li>
 	<a href="historial_citas.php?cedula=<?php echo $cedula ?>" class="list-group-item list-group-item-primary">Ver historial de citas</a>
+	<a href="edit_client.php?cedula=<?php echo $cedula ?>" class="list-group-item list-group-item-secondary">Editar información</a>
 	<!-- poner botones de historial citas y boton para ingresar a la cita  -->
 </ul> 
 </div>

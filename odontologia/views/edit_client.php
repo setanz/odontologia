@@ -2,7 +2,7 @@
 <html>
 <head>
 
-	<meta charset="utf-8">
+<meta charset="utf-8">
 		<link rel="stylesheet" href="../css/bootstrap.min.css" media="screen">
 		<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">		 -->
 		<!-- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script> -->
@@ -13,6 +13,7 @@
 </head>
 
 <header>
+<!-- navbar -->
 <?php
 	include("navbar.php");
 ?>
@@ -21,53 +22,55 @@
 
 <body background="../images/index3.jpg" style="background-attachment: fixed;  background-size: cover; padding-top: 80px;" >
 <main role="main" class="container mt-5" >
-	
+<!--Fin navbar  -->
 <br>
-<!-- formulario registro -->
-<h1>Registro cliente</h1>
-		<form action="" method="POST">
+
+
+<!-- Extración de la info de la bd -->
+ <?php
+		extract($_GET);
+		require("../src/connection_db.php");
+		
+		$sql="SELECT * FROM cliente WHERE cedula=$cedula";
+	//la variable  $mysqli viene de connect_db que lo traigo con el require("connect_db.php");
+		$ressql=mysqli_query($mysqli,$sql);
+		while ($row=mysqli_fetch_row ($ressql)){
+				$cedula=$row[0];
+		    	$nombre=$row[1];
+		    	$telefono=$row[2];
+		    }
+
+
+
+		?> 
+
+<form action="../src/guardar_cambios.php" method="POST">
 		<fieldset>
 			<div class="form-row">
 				
 				<div class="form-group col-md-6">
-					<input type="text" class="form-control" placeholder="Nombre completo" name= "nombre" required>
+                    <h5>Nombre</h5>
+					<input type="text" class="form-control" name= "nombre"  value="<?php echo strtoupper($nombre)?>"required>
 				</div>
-				<!-- <div class="form-group col-md-6">
-					<label for="inputNombre">Nombre</label>
-					<input type="text" class="form-control" placeholder="Nombre" name="nombre" required>
-				</div> -->
 			</div>
 			<div class="form-row">
 				<div class="form-group col-md-6">
-					<input type="number" class="form-control" placeholder="Cédula" name= "cedula" required>
+					<input type="text" class="form-control" value="<?php echo $cedula?>" name= "cedulaNueva" required>
 				</div>
-				<!-- <div class="form-group col-md-6">
-					<label for="telefono">Telefono</label>
-					<input type="tel" class="form-control" placeholder="Telefono" name="telefono" required>
-				</div> -->
 			</div>
 			<div class="form-row">
 				<div class="form-group col-md-6">
-					<input type="number" class="form-control" placeholder="Teléfono" name= "telefono" required>	
+                    <h5>Teléfono</h5>
+					<input type="number" class="form-control"  name= "telefono" value="<?php echo $telefono?>" required>	
 				</div>
 			</div>
-			<input  class="btn btn-primary" type="submit" name="submit" value="Registrarse"/>
-			<!-- <button type="submit" class="btn btn-primary" >Guardar</button> -->
+            <input type="hidden" class="form-control" value="<?php echo $cedula?>" name= "cedula" required>
+			<input  class="btn btn-primary" type="submit" name="submit" value="Guardar"/>
 		</fieldset>	
 		</form>
 
+<br>
 
-<?php
-	
-	if(isset($_POST['submit'])){
-		require("../src/login.php");
-		
-	}
-?>
-<!--Fin formulario registro -->
-
-		
-
-	
+ 
 </body>
 </html>

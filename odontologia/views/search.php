@@ -52,8 +52,8 @@
             echo "<thead>";
             echo "<tr class='table-primary'>";
             echo "<th scope='col'>Nombre</th>";
-            echo "<th scope='col'>Cedula</th>";
-            echo "<th scope='col'>Telefono</th>";
+            echo "<th scope='col'>Cédula</th>";
+            echo "<th scope='col'>Teléfono</th>";
             echo "</tr>";
             echo "</thead>";
             while ($field = mysqli_fetch_field($result)){ 
@@ -62,7 +62,7 @@
                     echo "</tr> \n"; 
                 do { 
                     echo "<tr class='table-light'> \n"; 
-                    echo "<td><a href='info_client.php?cedula=$row[0]'>".$row["nombre"]."</td> \n"; 
+                    echo "<td><a href='info_client.php?cedula=$row[0]'>".strtoupper($row["nombre"])."</td> \n"; 
                     echo "<td>".$row["cedula"]."</td> \n"; 
                     echo "<td>".$row["telefono"]."</td> \n"; 
 
@@ -76,8 +76,8 @@
             echo "<thead>";
             echo "<tr class='table-primary'>";
             echo "<th scope='col'>Nombre</th>";
-            echo "<th scope='col'>Cedula</th>";
-            echo "<th scope='col'>Telefono</th>";
+            echo "<th scope='col'>Cédula</th>";
+            echo "<th scope='col'>Teléfono</th>";
             echo "</tr>";
             echo "</thead>";
             while ($field = mysqli_fetch_field($result2)){ 
@@ -86,7 +86,7 @@
                 echo "</tr> \n"; 
                 do { 
                     echo "<tr class='table-light'> \n"; 
-                    echo "<td><a href='info_client.php?cedula=$row2[0]'>".$row2["nombre"]."</td> \n"; 
+                    echo "<td><a href='info_client.php?cedula=$row2[0]'>".strtoupper($row2["nombre"])."</td> \n"; 
                     echo "<td>".$row2["cedula"]."</td> \n"; 
                     echo "<td>".$row2["telefono"]."</td> \n"; 
 
