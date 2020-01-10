@@ -55,6 +55,7 @@
 			</div>
 			<div class="form-row">
 				<div class="form-group col-md-6">
+					<h5>Cédula</h5>
 					<input type="text" class="form-control" value="<?php echo $cedula?>" name= "cedulaNueva" required>
 				</div>
 			</div>

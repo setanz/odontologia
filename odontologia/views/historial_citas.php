@@ -32,7 +32,7 @@
     // Si hay información para buscar, abrimos la conexión
     require("../src/connection_db.php");
     //Contulta para la base de datos, se utiliza un comparador LIKE para acceder a todo lo que contenga la cadena a buscar
-    $sql = ("SELECT * FROM cita WHERE cliente=$cedula");
+    $sql = ("SELECT * FROM cita WHERE cliente=$cedula ORDER BY fecha desc " );
     $result= mysqli_query($mysqli,$sql);
     $row = mysqli_fetch_array($result);
     if ($row){ 
@@ -43,6 +43,7 @@
         echo "<tr class='table-primary'>";
         echo "<th scope='col'>Fecha</th>";
         echo "<th scope='col'>Descripción</th>";
+        echo "<th scope='col'>Editar</th>";
         echo "</tr>";
         echo "</thead>";
         while ($field = mysqli_fetch_field($result)){ 
@@ -53,6 +54,8 @@
                 echo "<tr class='table-light'> \n"; 
                 echo "<td>".$row["fecha"]."</td> \n"; 
                 echo "<td>".$row["descripcion"]."</td> \n"; 
+                echo "<td><a class='btn btn-primary' href='edit_cita.php?id=".$row['id']."' role='button' >Editar</a></td> \n"; 
+
 
                 echo "</tr> \n"; 
             } while ($row = mysqli_fetch_array($result)); 
